@@ -21,7 +21,6 @@ h = 0.05  # Tamaño del paso
 n = 100  # Número de pasos
 u, v = euler(f, x, y, h, n)
 
-
 # Graficar la solución
 plt.plot(u, v)
 plt.xlabel('x')
