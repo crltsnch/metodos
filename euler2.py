@@ -1,6 +1,6 @@
-'''ECUACIÓN 1'''
-
+'''ECUACIÓN 2'''
 import matplotlib.pyplot as plt
+import math as ma
 
 #Definir el método de Euler con Taylor
 def euler(f, x, y, h, n):
@@ -15,35 +15,26 @@ def euler(f, x, y, h, n):
 
 # Definir la EDO
 def f(x, y):
-    return (2 - x - y)/(x - y + 4)
+    return 2*x*ma.exp(-3*x)-3*y
 
 
 #azul
-x1 = 3 
-y1 = 4
+x1 = 0
+y1 = 1
 h1 = 0.1
-n1 = 55
+n1 = 20
 u1, v1 = euler(f, x1, y1, h1, n1)
 
 #naranja
-x2 = -2
+x2 = -0.7
 y2 = 0
 h2 = 0.1
-n2 = 55
+n2 = 45
 u2, v2 = euler(f, x2, y2, h2, n2)
 
 
-#verde
-x3 = -3
-y3 = 4
-h3 = 0.1
-n3 = 55
-u3, v3 = euler(f, x3, y3, h3, n3)
-
 # Graficar la solución
-
 plt.plot(u1, v1)
 plt.plot(u2, v2)
-plt.plot(u3, v3)
 plt.grid(True)
 plt.show()
