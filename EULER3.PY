@@ -15,17 +15,17 @@ def euler(f, x, y, h, n):
 
 # Definir la EDO
 def f(x, y):
-    return (4*x*y+1)/(3*x**2)
+    return (2-3*x-y)/(x-1)
 
 
 #azul
-x1 = 0.5
-y1 = -1
-h1 = 0.07
-n1 = 50
-u1, v1 = euler(f, x1, y1, h1, n1)
+x = 2
+y = -1
+h = 0.04
+n = 100
+u, v = euler(f, x, y, h, n)
 #imprime la ultima y del bucle
-print(v1[-1])
+print(v[-1])
 
 # Graficar la solución
 
