@@ -7,8 +7,8 @@ def euler(f, x, y, h, n):
     u = []
     v = []
     for i in range(n):
-        x = x + h
         y = y + h * f(x, y)
+        x = x + h
         u.append(x)
         v.append(y)
     return u, v
