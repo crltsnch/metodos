@@ -51,13 +51,17 @@ n = 5
 u, v = rungekutta4(f, x, y, h, n)
 
 # Solución real y solución del método
-print('w_100: ', v[-1])
-print("Solucion real: ", true_solucion(1/2))
+solucion_metodo = round(v[-1], 7)
+print('w_100: ', solucion_metodo)
+solucion_real = round(true_solucion(1/2), 7)
+print('Solucion real: ', solucion_real)
 
 # Error
-print('Error: ', error(true_solucion(1/2), v[-1]))
+error = error(solucion_real, v[-1])
+
+print('Error: ', round(error, 7))
 
 # Graficar la solución
 plt.plot(u, v)
 plt.grid(True)
-plt.show()
+#plt.show()
