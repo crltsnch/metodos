@@ -1,4 +1,4 @@
-# MÉTODO DE RUNGE-KUTTA -- ORDEN 2
+# MÉTODO DE RUNGE-KUTTA -- ORDEN 4
 
 import matplotlib.pyplot as plt
 
