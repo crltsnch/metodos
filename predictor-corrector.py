@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
+from math import e
 
 # Método predictor-corrector (Euler mejorado)
+def true_solucion(x):
+    return (x + 1)**2 - (e**x)/2
+
 def predictor_corrector(f, x, y, h, m):
     u = []
     v = []
@@ -16,24 +20,27 @@ def predictor_corrector(f, x, y, h, m):
         v.append(y)
     return u, v
 
-def f(x, y):
-    return (1+4*x*y) / (3*x**2)  # Esto se modifica
 
-x = 0.5 # Esto se modifica
-y = -1  # Esto se modifica
-h = 0.035 # Esto se modifica
-m = 100   # Esto se modifica
+def f(x, y):
+    return y-x**2+1  # Esto se modifica
+
+
+#Error
+def error(v,v_aprox):
+    return abs(v-v_aprox)
+
+x = 0# Esto se modifica
+y = 1/2  # Esto se modifica
+h = 0.05 # Esto se modifica
+m = 10   # Esto se modifica
 
 u, v = predictor_corrector(f, x, y, h, m)
 
 print('w_100', v[-1])
+print('Solucion real:', true_solucion(1/2))
 
 #Error
-
-def error(v,v_aprox):
-    return abs(v-v_aprox)
-
-print('Error:', error(-11.46,v[-1]))
+print('Error:', error(true_solucion(1/2),v[-1]))
 
 # Gráfico
 plt.plot(u, v, label='Predictor-Corrector')

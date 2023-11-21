@@ -1,8 +1,21 @@
 '''ECUACIÓN 1'''
 
 import matplotlib.pyplot as plt
+from math import e
+import numpy as np
+
 
 #Definir el método de Euler con Taylor
+def true_solution1(x):
+    return (x + 1)**2 - 0.5*e**x
+
+def true_solution2(x):
+    return (x + 1)**2 - e**x
+
+def true_solution3(x):
+    return (x + 1)**2 - 2*e**x
+
+
 def euler(f, x, y, h, n):
     u = []
     v = []
@@ -15,20 +28,49 @@ def euler(f, x, y, h, n):
 
 # Definir la EDO
 def f(x, y):
-    return (2-3*x-y)/(x-1)
+    return y-x**2+1
+
+def error(v, v_aprox):
+    return abs(v - v_aprox)
 
 
-#azul
-x = 2
-y = -1
-h = 0.04
-n = 100
-u, v = euler(f, x, y, h, n)
-#imprime la ultima y del bucle
-print(v[-1])
+x1 = 0
+y1 = 1/2
+h = 0.025
+n = 20
+u1, v1 = euler(f, x1, y1, h, n)
+
+x2 = 0
+y2 = 0
+h = 0.025
+n = 20
+u2, v2 = euler(f, x2, y2, h, n)
+
+x3 = 0
+y3 = -1
+h = 0.025
+n = 20
+u3, v3 = euler(f, x3, y3, h, n)
+
+
+#Graficas las tres soluciones exactas
+x_exacta1 = np.linspace(x1, x1+n*h, n)
+x_exacta2 = np.linspace(x2, x2+n*h, n)
+x_exacta3 = np.linspace(x3, x3+n*h, n)
+y_exacta1 = true_solution1(x_exacta1)
+y_exacta2 = true_solution2(x_exacta2)
+y_exacta3 = true_solution3(x_exacta3)
+
 
 # Graficar la solución
-
-'''plt.plot(u1, v1)
+plt.plot(u1, v1, u2, v2, u3, v3, x_exacta1, x_exacta2, x_exacta3, y_exacta1, y_exacta2, y_exacta3)
 plt.grid(True)
-plt.show()'''
+plt.show()
+
+
+#Valor real, valor aproximado y error
+v = true_solution1(1/2)
+print('Valor real: ', v)
+v_aprox = v1[-1]
+print('Valor aproximado: ', v_aprox)
+print('Error: ', error(v, v_aprox))

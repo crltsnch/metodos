@@ -1,9 +1,12 @@
 # MÉTODO DE RUNGE-KUTTA -- ORDEN 4
 
 import matplotlib.pyplot as plt
+from math import e
 
+def true_solucion(x):
+    return (x + 1)**2 - (e**x)/2
 
-def taylor(f, x, y, h, n):
+def rungekutta4(f, x, y, h, n):
     '''
     Función que implementa el método de Runge-Kutta para resolver una EDO
     '''
@@ -28,7 +31,7 @@ def f(x, y):
     '''
     Aquí se define la EDO
     '''
-    return (1 + 4*x*y)/(3*x**2)
+    return y-x**2+1
 
 
 def error(v, v_aprox):
@@ -39,22 +42,22 @@ def error(v, v_aprox):
 
 
 # DATOS
-x = 0.5
-y = -1
-h = 0.035
-n = 100
+x = 0
+y = 1/2  
+h = 0.1 
+n = 5
 
 # Aplicamos el método de Euler
-u, v = taylor(f, x, y, h, n)
+u, v = rungekutta4(f, x, y, h, n)
 
-# Imprimimos la última y del bucle
+# Solución real y solución del método
 print('w_100: ', v[-1])
+print("Solucion real: ", true_solucion(1/2))
 
 # Error
-v_e = -11.46
-print('Error: ', error(v_e, v[-1]))
+print('Error: ', error(true_solucion(1/2), v[-1]))
 
 # Graficar la solución
 plt.plot(u, v)
 plt.grid(True)
-#plt.show()
+plt.show()
