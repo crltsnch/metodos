@@ -44,7 +44,7 @@ def error(v, v_aprox):
 # DATOS
 x = 0
 y = 0
-h = 0.8
+h = 0.3
 n = 5
 
 # Aplicamos el método de Euler

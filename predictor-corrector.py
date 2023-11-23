@@ -31,7 +31,7 @@ def error(v,v_aprox):
 
 x = 0 # Esto se modifica
 y = 0  # Esto se modifica
-h = 0.4 # Esto se modifica
+h = 0.15 # Esto se modifica
 m = 10   # Esto se modifica
 
 u, v = predictor_corrector(f, x, y, h, m)

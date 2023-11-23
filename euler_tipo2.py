@@ -36,19 +36,19 @@ def error(v, v_aprox):
 
 x1 = 0
 y1 = 0
-h = 0.2
+h = 0.075
 n = 20
 u1, v1 = euler(f, x1, y1, h, n)
 
 x2 = 0
 y2 = 1
-h = 0.2
+h = 0.075
 n = 20
 u2, v2 = euler(f, x2, y2, h, n)
 
 x3 = 0
 y3 = -1
-h = 0.2
+h = 0.075
 n = 20
 u3, v3 = euler(f, x3, y3, h, n)
 
