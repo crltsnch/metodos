@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from math import e
 
 def true_solucion(x):
-    return (x + 1)**2 - (e**x)/2
+    return (x**2)*(e**(-x**2))
 
 def rungekutta4(f, x, y, h, n):
     '''
@@ -31,7 +31,7 @@ def f(x, y):
     '''
     Aquí se define la EDO
     '''
-    return y-x**2+1
+    return (-2*x*y) + (2*x*(e**(-x**2)))
 
 
 def error(v, v_aprox):
@@ -43,8 +43,8 @@ def error(v, v_aprox):
 
 # DATOS
 x = 0
-y = 1/2  
-h = 0.1 
+y = 0
+h = 0.8
 n = 5
 
 # Aplicamos el método de Euler
@@ -53,12 +53,11 @@ u, v = rungekutta4(f, x, y, h, n)
 # Solución real y solución del método
 solucion_metodo = round(v[-1], 7)
 print('w_100: ', solucion_metodo)
-solucion_real = round(true_solucion(1/2), 7)
+solucion_real = round(true_solucion(1.5), 7)
 print('Solucion real: ', solucion_real)
 
 # Error
 error = error(solucion_real, v[-1])
-
 print('Error: ', round(error, 7))
 
 # Graficar la solución

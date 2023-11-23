@@ -3,7 +3,7 @@ from math import e
 
 # Método predictor-corrector (Euler mejorado)
 def true_solucion(x):
-    return (x + 1)**2 - (e**x)/2
+    return (x**2)/(e**(x**2))
 
 def predictor_corrector(f, x, y, h, m):
     u = []
@@ -22,25 +22,25 @@ def predictor_corrector(f, x, y, h, m):
 
 
 def f(x, y):
-    return y-x**2+1  # Esto se modifica
+    return -2*x*y + (2*x/(e**(x**2)))  # Esto se modifica
 
 
 #Error
 def error(v,v_aprox):
     return abs(v-v_aprox)
 
-x = 0# Esto se modifica
-y = 1/2  # Esto se modifica
-h = 0.05 # Esto se modifica
+x = 0 # Esto se modifica
+y = 0  # Esto se modifica
+h = 0.4 # Esto se modifica
 m = 10   # Esto se modifica
 
 u, v = predictor_corrector(f, x, y, h, m)
 
 print('w_100', v[-1])
-print('Solucion real:', true_solucion(1/2))
+print('Solucion real:', true_solucion(1.5))
 
 #Error
-print('Error:', error(true_solucion(1/2),v[-1]))
+print('Error:', error(true_solucion(1),v[-1]))
 
 # Gráfico
 plt.plot(u, v, label='Predictor-Corrector')
