@@ -2,17 +2,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math 
 
-
 p = float(input("Introduzca el valor de p: "))
 q = float(input("Introduzca el valor de q: "))
 r = float(input("Introduzca el valor de r: "))
 s = float(input("Introduzca el valor de s: "))
 
 def funcionX(x, u, v):
-    return p*u-q*u*v
+    return p*u-q*u*v  
+    #return -v+u*(1-u**2-v**2)  para el plano de fases
 
 def funcionY(x, u, v):
     return -r*v+s*u*v
+    #return u + v*(1-u**2-v**2)  para el plano de fases
 
 def runge_kutta_sistemas(funcionX, funcionY, x, y1, y2, h, n):
     '''
@@ -40,19 +41,17 @@ def runge_kutta_sistemas(funcionX, funcionY, x, y1, y2, h, n):
     return r1, u1, v1
 
 
-
-
 # DATOS
 # -----
 # Rango de x
 x_inicial = 0
-x_final = 5
+x_final = 20
 # Datos iniciales
 x = 0
-y1 = 10 # Recodar que la u es la y
-y2 =  5 # Es y'
+y1 = 0.5 # Recodar que la u es la y
+y2 =  0 # Es y'
 # Número de subintervalos que nos permite calcular el valor de h (paso)
-n = 100
+n = 400
 h = (x_final - x_inicial)/n
 
 # Aplicamos el método de Runge-Kutta de orden 4 para resolver la EDO de segundo orden
@@ -61,8 +60,9 @@ r1, u1, v1 = runge_kutta_sistemas(funcionX, funcionY, x, y1, y2, h, n)
 
 # Graficar la solución
 # --------------------
-plt.plot(r1, u1, label='Solución numérica x(t)')
-plt.plot(r1, v1, label='Solución numérica y(t)')
+#plt.plot(r1, u1, label='Solución numérica x(t)')
+#plt.plot(r1, v1, label='Solución numérica y(t)')
+plt.plot(u1, v1, label='Plano de fases')
 plt.xlabel('x')
 
 plt.legend()
