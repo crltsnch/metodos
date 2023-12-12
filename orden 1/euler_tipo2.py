@@ -1,22 +1,13 @@
-'''ECUACIÓN 1'''
 
 import matplotlib.pyplot as plt
-from math import e
 import numpy as np
-
-
-#Definir el método de Euler con Taylor
-def true_solution1(x):
-    return (x**2)/(e**(x**2))
-
-def true_solution2(x):
-    return ((x**2)+1)/(e**(x**2))
-
-def true_solution3(x):
-    return ((x**2)-1)/(e**(x**2))
+from math import e
 
 
 def euler(f, x, y, h, n):
+    '''
+    Función que implementa el método de Euler para resolver una EDO
+    '''
     u = []
     v = []
     for i in range(n):
@@ -26,53 +17,85 @@ def euler(f, x, y, h, n):
         v.append(y)
     return u, v
 
-# Definir la EDO
 def f(x, y):
-    return -2*x*y + (2*x/(e**(x**2)))
+    '''
+    Aquí se define la EDO
+    '''
+    return (2-3*x-y)/(x-1)
+
+def f_exacta1(x):
+    '''
+    Función exacta 1
+    '''
+    return (4*x-3*x**2+2)/(2*(x-1))
+
+def f_exacta2(x):
+    '''
+    Función exacta 2
+    '''
+    return (x + 1)**2 - (1/2)*np.exp(x)
+
+def f_exacta3(x):
+    '''
+    Función exacta 3
+    '''
+    return (x + 1)**2 - 2*np.exp(x)
 
 def error(v, v_aprox):
+    '''
+    Devuelve el error absoluto
+    '''
     return abs(v - v_aprox)
 
 
-x1 = 0
-y1 = 0
-h = 0.075
-n = 20
-u1, v1 = euler(f, x1, y1, h, n)
+# DATOS
+# -----
+# Rango de x
+x_inicial = 2
+x_final = 6
+# Datos iniciales (me da n 3 datos iniciales donde x siempre es igual, pero y varía)
+x = 2
+y0 = -1
+#y1 = 0
+#y2 = -1
+# Número de subintervalos que nos permite calcular el valor de h (paso)
+n = 50
+h = (x_final - x_inicial)/n
 
-x2 = 0
-y2 = 1
-h = 0.075
-n = 20
-u2, v2 = euler(f, x2, y2, h, n)
+# Aplicamos el método de Euler 3 veces (una para cada dato inicial) y obtenemos las soluciones numéricas
+u0, v0 = euler(f, x, y0, h, n)
+#u1, v1 = euler(f, x, y1, h, n)
+#u2, v2 = euler(f, x, y2, h, n)
 
-x3 = 0
-y3 = -1
-h = 0.075
-n = 20
-u3, v3 = euler(f, x3, y3, h, n)
+# Obtenemos las soluciones exactas
+x_real = np.linspace(x_inicial, x_final, n)
+y_real1 = f_exacta1(x_real)
+#y_real2 = f_exacta2(x_real)
+#y_real3 = f_exacta3(x_real)
+
+# Imprimimos la última y del bucle con 7 decimales 
+
+print('w_100: {:.7f}'.format(v0[-1]))
+
+#Solucion real en y(1/2)
+
+print('y(4): {:.7f}'.format(f_exacta1(6)) )
+
+#Error absoluto
+v_e=f_exacta1(6)
+print('Error: {:.7f}'.format(error(v_e, v0[-1])))
 
 
-#Graficas las tres soluciones exactas
-x_exacta1 = np.linspace(x1, x1+n*h, n)
-x_exacta2 = np.linspace(x2, x2+n*h, n)
-x_exacta3 = np.linspace(x3, x3+n*h, n)
-y_exacta1 = true_solution1(x_exacta1)
-y_exacta2 = true_solution2(x_exacta2)
-y_exacta3 = true_solution3(x_exacta3)
+'''# Graficar la solución
+# --------------------
+# Dibujamos las soluciones numéricas
+plt.plot(u0, v0)
+plt.plot(u1, v1)
+plt.plot(u2, v2)
+# Dibujamos las soluciones exactas
+plt.plot(x_real, y_real1)
+plt.plot(x_real, y_real2)
+plt.plot(x_real, y_real3)
 
-
-# Graficar la solución
-plt.plot(u1, v1, u2, v2, u3, v3, x_exacta1, y_exacta1, x_exacta2, y_exacta2, x_exacta3, y_exacta3)
-#definir el intervalo de x en la que quiero que el grafico se mueva 0, 1.5
-plt.axis([0, 1.5, -1.5, 1.5])
 plt.grid(True)
-#plt.show()
-
-
-#Valor real, valor aproximado y error
-v = true_solution1(1.5)
-print('Valor real: ', v)
-v_aprox = v1[-1]
-print('Valor aproximado: ', v_aprox)
-print('Error: ', error(v, v_aprox))
+plt.show()'''

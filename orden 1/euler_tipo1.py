@@ -1,6 +1,7 @@
 '''ECUACIÓN 1'''
 
 import matplotlib.pyplot as plt
+from math import e
 
 #Definir el método de Euler con Taylor
 def euler(f, x, y, h, n):
@@ -15,14 +16,14 @@ def euler(f, x, y, h, n):
 
 # Definir la EDO
 def f(x, y):
-    return (4*x*y+1)/(3*x**2)
+    return (e**x)/((1+e**x)*y)
 
 
 #azul
-x1 = 0.5
-y1 = -1
-h1 = 0.07
-n1 = 50
+x1 = -2
+y1 = 1
+h1 = 0.04
+n1 = 100
 u1, v1 = euler(f, x1, y1, h1, n1)
 #imprime la ultima y del bucle
 print(v1[-1])
