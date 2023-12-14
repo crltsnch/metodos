@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from math import e
 
 def true_solucion(x):
-    return (x**2)/(e**(x**2))
+    return (x**2)*e**(-x**2)
 
 def taylor(f, x, y, h, n):
     '''
@@ -23,7 +23,7 @@ def f(x, y):
     '''
     Aquí se define la EDO
     '''
-    return -2*x*y + (2*x/(e**(x**2)))
+    return 2*x*(e**(-x**2)-y)
 
 
 def error(v, v_aprox):
@@ -36,7 +36,7 @@ def error(v, v_aprox):
 # DATOS
 x = 0# Esto se modifica
 y = 0  # Esto se modifica
-h = 0.19 # Esto se modifica
+h = 0.15 # Esto se modifica
 n = 10 
 
 # Aplicamos el método de Euler

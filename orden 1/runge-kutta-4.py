@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from math import e
 
 def true_solucion(x):
-    return (x**2)*(e**(-x**2))
+    return (x**2)*e**(-x**2)
 
 def rungekutta4(f, x, y, h, n):
     '''
@@ -31,7 +31,7 @@ def f(x, y):
     '''
     Aquí se define la EDO
     '''
-    return (-2*x*y) + (2*x*(e**(-x**2)))
+    return 2*x*(e**(-x**2)-y)
 
 
 def error(v, v_aprox):
