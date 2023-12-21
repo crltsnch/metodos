@@ -18,17 +18,18 @@ def euler(f, x, y, h, n):
         v.append(y)
     return u, v
 
+#para mi ecuacion dv/dt+(0.4/(10-0.1t))*v=9.8
 def f(x, y):
     '''
     Aquí se define la EDO
     '''
-    return y-x**2+1
+    return 9.8-0.05*y
 
 def f_exacta1(x):
     '''
     Función exacta 1
     '''
-    return (x+1)**2-e**x
+    return 196*(1-e**(-0.05*x))
 
 def f_exacta2(x):
     '''
@@ -53,50 +54,50 @@ def error(v, v_aprox):
 # -----
 # Rango de x
 x_inicial = 0
-x_final = 1/2
+x_final = 100
 # Datos iniciales (me da n 3 datos iniciales donde x siempre es igual, pero y varía)
 x = 0
 y0 = 0
-y1 = 1/2
-y2 = -1
+#y1 = 1/2
+#y2 = -1
 # Número de subintervalos que nos permite calcular el valor de h (paso)
-n = 100
+n = 2000
 h = (x_final - x_inicial)/n
 
 # Aplicamos el método de Euler 3 veces (una para cada dato inicial) y obtenemos las soluciones numéricas
 u0, v0 = euler(f, x, y0, h, n)  #con esta sacamos W_i darnos cuenta de y0
-u1, v1 = euler(f, x, y1, h, n)
-u2, v2 = euler(f, x, y2, h, n)
+#u1, v1 = euler(f, x, y1, h, n)
+#u2, v2 = euler(f, x, y2, h, n)
 
 # Obtenemos las soluciones exactas
 x_real = np.linspace(x_inicial, x_final, n)
 y_real1 = f_exacta1(x_real)
-y_real2 = f_exacta2(x_real)
-y_real3 = f_exacta3(x_real)
+#y_real2 = f_exacta2(x_real)
+#y_real3 = f_exacta3(x_real)
 
 # Imprimimos la última y del bucle con 7 decimales 
 
-print('w_100: {:.7f}'.format(v0[-1]))
+print('w_2000: {:.7f}'.format(v0[-1]))
 
 #Solucion real en y(1/2)
 
-print('y(2): {:.7f}'.format(f_exacta1(1/2)) )
+print('y(100): {:.7f}'.format(f_exacta1(100)) )
 
 #Error absoluto
-v_e=f_exacta1(1/2)
+v_e=f_exacta1(100)
 print('Error: {:.7f}'.format(error(v_e, v0[-1])))
 
 
 # Graficar la solución
 # --------------------
-# Dibujamos las soluciones numéricas
-plt.plot(u0, v0)
-plt.plot(u1, v1)
-plt.plot(u2, v2)
+# Dibujamos las soluciones numérica
+#plt.plot(u0, v0)
+#plt.plot(u1, v1)
+#plt.plot(u2, v2)
 # Dibujamos las soluciones exactas
-plt.plot(x_real, y_real1)
-plt.plot(x_real, y_real2)
-plt.plot(x_real, y_real3)
+#plt.plot(x_real, y_real1)
+#plt.plot(x_real, y_real2)
+#plt.plot(x_real, y_real3)
 
-plt.grid(True)
-plt.show()
+'''plt.grid(True)
+plt.show()'''
