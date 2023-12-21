@@ -34,10 +34,12 @@ def error(v, v_aprox):
 
 
 # DATOS
+x_inicial = 0
+x_final = 1.5
 x = 0# Esto se modifica
 y = 0  # Esto se modifica
-h = 0.15 # Esto se modifica
 n = 10 
+h = (x_final - x_inicial)/n
 
 # Aplicamos el método de Euler
 u, v = taylor(f, x, y, h, n)

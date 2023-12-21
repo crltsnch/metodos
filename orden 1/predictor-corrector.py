@@ -29,10 +29,12 @@ def f(x, y):
 def error(v,v_aprox):
     return abs(v-v_aprox)
 
+x_inicial = input('Ingrese el valor de x inicial: ')
+x_final = input('Ingrese el valor de x final: ')
 x = 0 # Esto se modifica
 y = 0  # Esto se modifica
-h = 0.15 # Esto se modifica
 m = 10   # Esto se modifica
+h = (x_final - x_inicial)/m
 
 u, v = predictor_corrector(f, x, y, h, m)
 

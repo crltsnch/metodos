@@ -42,10 +42,12 @@ def error(v, v_aprox):
 
 
 # DATOS
+x_inicial = 0
+x_final = 1.5
 x = 0
 y = 0
-h = 0.3
 n = 5
+h = (x_final - x_inicial)/n
 
 # Aplicamos el método de Euler
 u, v = rungekutta4(f, x, y, h, n)

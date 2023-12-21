@@ -2,6 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from math import e
+import math
 
 
 def euler(f, x, y, h, n):
@@ -21,25 +22,25 @@ def f(x, y):
     '''
     Aquí se define la EDO
     '''
-    return 2*x*(e**(-x**2)-y)
+    return y-x**2+1
 
 def f_exacta1(x):
     '''
     Función exacta 1
     '''
-    return (x**2)*e**(-x**2)
+    return (x+1)**2-e**x
 
 def f_exacta2(x):
     '''
     Función exacta 2
     '''
-    return e**(-x**2)*(x**2+1)
+    return (x+1)**2-(1/2)*e**x
 
 def f_exacta3(x):
     '''
     Función exacta 3
     '''
-    return e**(-x**2)*(x**2-1)
+    return (x+1)**2-2*e**x
 
 def error(v, v_aprox):
     '''
@@ -52,14 +53,14 @@ def error(v, v_aprox):
 # -----
 # Rango de x
 x_inicial = 0
-x_final = 1.5
+x_final = 1/2
 # Datos iniciales (me da n 3 datos iniciales donde x siempre es igual, pero y varía)
 x = 0
 y0 = 0
-y1 = 1
+y1 = 1/2
 y2 = -1
 # Número de subintervalos que nos permite calcular el valor de h (paso)
-n = 20
+n = 100
 h = (x_final - x_inicial)/n
 
 # Aplicamos el método de Euler 3 veces (una para cada dato inicial) y obtenemos las soluciones numéricas
@@ -75,18 +76,18 @@ y_real3 = f_exacta3(x_real)
 
 # Imprimimos la última y del bucle con 7 decimales 
 
-print('w_20: {:.7f}'.format(v0[-1]))
+print('w_100: {:.7f}'.format(v0[-1]))
 
 #Solucion real en y(1/2)
 
-print('y(1/2): {:.7f}'.format(f_exacta1(1.5)) )
+print('y(2): {:.7f}'.format(f_exacta1(1/2)) )
 
 #Error absoluto
-v_e=f_exacta1(1.5)
+v_e=f_exacta1(1/2)
 print('Error: {:.7f}'.format(error(v_e, v0[-1])))
 
 
-'''# Graficar la solución
+# Graficar la solución
 # --------------------
 # Dibujamos las soluciones numéricas
 plt.plot(u0, v0)
@@ -98,4 +99,4 @@ plt.plot(x_real, y_real2)
 plt.plot(x_real, y_real3)
 
 plt.grid(True)
-plt.show()'''
+plt.show()
