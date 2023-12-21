@@ -26,30 +26,31 @@ def euler2(f, x, u, v, h, n, m):  #m es la ecuacion de bessel
 
 # Definir la EDO
 def f(x, u, v, m):
-    return (-1/x)*v-(1-((m**2)/x**2))*u
+    return (e**(-2*x))/(1-x**2)-(4*v)-4*u
+    #return (-1/x)*v-(1-((m**2)/x**2))*u
 
 
 def error(v, v_aprox):
     return abs(v - v_aprox)
 
 
-x_inicial = 0.1
-x_final = 20
-x = 0.1
+x_inicial = 1.01
+x_final = 5
+x = 1.01
 u = 0
 v = 1
-n = 1000
+n = 100
 h = (x_final - x_inicial)/n
 m = 0
 r0, t0 = euler2(f, x, u, v, h, n, m)
 
 
-x_inicial1 = 0.1
-x_final1 = 20
-x1 = 0.1
-u1 = 1
-v1 = 0
-n1 = 1000
+x_inicial1 = 1.01
+x_final1 = 5
+x1 = 1.01
+u1 = 0
+v1 = -1
+n1 = 100
 h1 = (x_final1 - x_inicial1)/n1
 m1 = 0
 r1, t1 = euler2(f, x1, u1, v1, h1, n1, m1)
