@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from math import e
 
 def true_solucion(x):
-    return (x**2)*e**(-x**2)
+    return x**2*e**(-x**2)
 
 def rungekutta4(f, x, y, h, n):
     '''

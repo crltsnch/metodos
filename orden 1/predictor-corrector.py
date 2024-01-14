@@ -3,7 +3,7 @@ from math import e
 
 # Método predictor-corrector (Euler mejorado)
 def true_solucion(x):
-    return (x**2)*e**(-x**2)
+    return x**2*e**(-x**2)
 
 def predictor_corrector(f, x, y, h, m):
     u = []
@@ -29,8 +29,8 @@ def f(x, y):
 def error(v,v_aprox):
     return abs(v-v_aprox)
 
-x_inicial = float(input('Ingrese el valor de x inicial: '))
-x_final = float(input('Ingrese el valor de x final: '))
+x_inicial = 0
+x_final = 1.5
 x = 0 # Esto se modifica
 y = 0  # Esto se modifica
 m = 10   # Esto se modifica

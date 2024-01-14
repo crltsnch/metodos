@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from math import e
 
 def true_solucion(x):
-    return (x**2)*e**(-x**2)
+    return x**2*e**(-x**2)
 
 def taylor(f, x, y, h, n):
     '''
@@ -37,7 +37,7 @@ def error(v, v_aprox):
 x_inicial = 0
 x_final = 1.5
 x = 0# Esto se modifica
-y = 0  # Esto se modifica
+y = 0 # Esto se modifica
 n = 10 
 h = (x_final - x_inicial)/n
 
