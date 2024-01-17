@@ -35,7 +35,7 @@ u = 0
 v = 1
 n = 100
 h = (x_final - x_inicial)/n
-m = 0
+m = 1
 r0, t0 = euler2(f, x, u, v, h, n, m)
 
 

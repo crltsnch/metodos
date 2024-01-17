@@ -29,7 +29,12 @@ def polinomios(x, n, alfa, beta):
     return (-1)**n * math.factorial(n + beta) / (math.factorial(n)* math.factorial(beta + 1))
 
 def derivada_pol(x, n, alfa, beta):
-    return (-1)**n * math.factorial(n + beta + 1) / (math.factorial(n - 1) * math.factorial(beta + 1)) * (1 + (n + alfa) + beta)
+    if n == 0:
+        return 0  # Manejar el caso especial cuando n es 0
+    elif n == 1:
+        return 1 / (beta + 1)
+    else:
+        return (-1)**n * (math.factorial(n + beta) / (math.factorial(n - 1) * math.factorial(beta + 1))) * (1 + n + alfa + beta)
 
 # DATOS
 # Constante alfa
@@ -59,3 +64,4 @@ plt.ylabel('u(x)')
 plt.legend()
 plt.grid(True)
 plt.show()
+

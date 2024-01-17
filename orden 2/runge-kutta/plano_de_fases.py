@@ -2,13 +2,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
+#aqui x es el timpo, u seria la x y v seria la y
+
 def funcionX(x, u, v):
-    #return -v+u*(1-u**2-v**2)
-    return v
+    return -v+u*(1-u**2-v**2)
+    #return v
 
 def funcionY(x, u, v):
-    #return u + v*(1-u**2-v**2)
-    return -u + u**2
+    return u + v*(1-u**2-v**2)
+    #return -u + u**2
 
 def runge_kutta_sistemas(funcionX, funcionY, x, y1, y2, h, n):
     r1 = []
