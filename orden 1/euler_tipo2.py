@@ -27,13 +27,13 @@ def f(x, y):
     '''
     Aquí se define la EDO
     '''
-    return 2*x*(e**(-x**2)-y)
+    return (1-e**(-x))/y
 
 def f_exacta1(x):
     '''
     Función exacta 1
     '''
-    return x**2*e**(-x**2)
+    return (2*(x+e**(-x))+2)**(1/2)
     
     #return (2 * np.log(1 + np.exp(x)) + 0.7461)**(1/2)
 
@@ -41,7 +41,7 @@ def f_exacta2(x):
     '''
     Función exacta 2
     '''
-    return (x**2+1)*e**(-x**2)
+    return (2*(x+e**(-x))+2)**(1/2)
 
 def f_exacta3(x):
     '''
@@ -60,14 +60,14 @@ def error(v, v_aprox):
 # -----
 # Rango de x
 x_inicial = 0
-x_final = 1.5
+x_final = 2
 # Datos iniciales (me da n 3 datos iniciales donde x siempre es igual, pero y varía)
 x = 0
-y0 = 0
+y0 = 2
 y1 = 1
 y2 = -1
 # Número de subintervalos que nos permite calcular el valor de h (paso)
-n = 20
+n = 100
 h = (x_final - x_inicial)/n
 
 # Aplicamos el método de Euler 3 veces (una para cada dato inicial) y obtenemos las soluciones numéricas
@@ -87,17 +87,17 @@ print('w_100: {:.7f}'.format(v0[-1]))
 
 #Solucion real en y(1/2)
 
-print('y(2): {:.7f}'.format(f_exacta1(1.5)))
+print('y(2): {:.7f}'.format(f_exacta1(2)))
 
 #Error absoluto
-v_e=f_exacta1(1.5)
+v_e=f_exacta1(2)
 print('Error: {:.7f}'.format(error(v_e, v0[-1])))
 
 
 # Graficar la solución
 # --------------------
 # Dibujamos las soluciones numérica
-#plt.plot(u0, v0)
+plt.plot(u0, v0)
 #plt.plot(u1, v1)
 #plt.plot(u2, v2)
 # Dibujamos las soluciones exactas
@@ -105,5 +105,5 @@ print('Error: {:.7f}'.format(error(v_e, v0[-1])))
 #plt.plot(x_real, y_real2)
 #plt.plot(x_real, y_real3)
 
-'''plt.grid(True)
-plt.show()'''
+plt.grid(True)
+plt.show() 
